@@ -1,7 +1,14 @@
 ---
 - name: add Ubuntu Tweak ppa repo
-  apt_repository: repo=ppa:tualatrix/ppa state=present update_cache=yes
+  apt_repository: repo="deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu trusty main"
+
+- name: add Ubuntu Tweak ppa repo (source)
+  apt_repository: repo="deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu trusty main"
+
+- name: "Install Ubuntu Tweak gpg key"
+  apt_key: id=0624A220
+           keyserver=keyserver.ubuntu.com
 
 - name: install Ubuntu Tweak customization tool
-  apt: pkg=ubuntu-tweak state=present
+  apt: pkg=ubuntu-tweak state=present update_cache=yes
 
